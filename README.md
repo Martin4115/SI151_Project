@@ -10,13 +10,13 @@
 
 
 ## Roadmap
-:heavy_check_mark: Feature extraction
-:heavy_minus_sign: SVM
-:heavy_minus_sign: Naive bayes/LDA
-:heavy_minus_sign: Logistic regression
-:heavy_minus_sign: Neural network
-:heavy_minus_sign: Come up with something new
-:heavy_minus_sign: Write the report.
+:heavy_check_mark: Feature extraction </br>
+:heavy_minus_sign: SVM </br>
+:heavy_minus_sign: Naive bayes/LDA </br>
+:heavy_minus_sign: Logistic regression </br>
+:heavy_minus_sign: Neural network </br>
+:heavy_minus_sign: Come up with something new </br>
+:heavy_minus_sign: Write the report. </br>
 
 
 ## Reference:
