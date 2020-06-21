@@ -12,7 +12,7 @@
 [Distributed Representations of Words and Phrases and their Compositionality](https://arxiv.org/abs/1310.4546) </br>
 [Machine Learning Approach to Personality Type Prediction Based on the Myers-Briggs Type Indicator](https://www.researchgate.net/publication/339935842_Machine_Learning_Approach_to_Personality_Type_Prediction_Based_on_the_Myers-Briggs_Type_Indicator_R) </br>
 
-# To do list
+## To do list
 + SVM
 + Naive bayes/LDA
 + Logistic regression
