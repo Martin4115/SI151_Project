@@ -9,13 +9,14 @@
 + Fourth bit: 0-J 1-P
 
 
-## To do list
-+ SVM
-+ Naive bayes/LDA
-+ Logistic regression
-+ Neural network
-+ Come up with something new
-+ Write the report.
+## Roadmap
+:heavy_check_mark: Feature extraction
+:heavy_minus_sign: SVM
+:heavy_minus_sign: Naive bayes/LDA
+:heavy_minus_sign: Logistic regression
+:heavy_minus_sign: Neural network
+:heavy_minus_sign: Come up with something new
+:heavy_minus_sign: Write the report.
 
 
 ## Reference:
