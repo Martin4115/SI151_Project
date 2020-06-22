@@ -11,7 +11,7 @@
 
 ## Roadmap
 :heavy_check_mark: Feature extraction </br>
-:heavy_minus_sign: SVM </br>
+:heavy_check_mark: SVM  &emsp; Accuracy: 78% for binary classification</br>
 :heavy_minus_sign: Naive bayes/LDA </br>
 :heavy_minus_sign: Logistic regression </br>
 :heavy_minus_sign: Neural network </br>
@@ -30,4 +30,5 @@
 ### Relative Papers
 [Distributed Representations of Words and Phrases and their Compositionality](https://arxiv.org/abs/1310.4546) </br>
 [Machine Learning Approach to Personality Type Prediction Based on the Myers-Briggs Type Indicator](https://www.researchgate.net/publication/339935842_Machine_Learning_Approach_to_Personality_Type_Prediction_Based_on_the_Myers-Briggs_Type_Indicator_R) </br>
-
+### Neural network classifier
+[Tensorflow inplementation](https://blog.csdn.net/sinat_29957455/article/details/78324082)
