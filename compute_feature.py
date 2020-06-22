@@ -4,7 +4,7 @@ import re
 import collections
 import numpy as np
 
-model = Word2Vec.load("./gensim_w2v_sg1_mc4_model")
+model = Word2Vec.load("./gensim_w2v_sg0_mc4_model")
 feature_dim = 200
 
 
@@ -25,15 +25,23 @@ def compute_feature(freq):
 	return result
 
 def encode_type(label):
-	value = 0
+	value = ''
 	if label[0] == 'I':
-		value += 1000
+		value += '1'
+	else:
+		value += '0'
 	if label[1] == 'N':
-		value += 100
+		value += '1'
+	else:
+		value += '0'
 	if label[2] == 'F':
-		value += 10
+		value += '1'
+	else:
+		value += '0'
 	if label[3] == 'P':
-		value += 1
+		value += '1'
+	else:
+		value += '0'
 	return value
 
 
@@ -55,13 +63,16 @@ with open('./mbti.csv', 'r', encoding='UTF-8') as f:
 		result = compute_feature(freq)
 		# print(result)
 		t = encode_type(row[0])
+		if len(t)!= 4:
+			print("error")
+			break
 		features.append((t, result))
 		print(len(features))
 
 
 
 # fileHeader = ["Type", "feature"]
-csvFile = open("./feature_dim200_sg1.csv", "w", newline="")
+csvFile = open("./feature_dim200_sg0.csv", "w", newline="")
 writer = csv.writer(csvFile)
 # writer.writerow(fileHeader)
 for data in features:
