@@ -20,11 +20,11 @@
 
 ## Accuracy summary
 
-| Method | Dimension 0 | Dimension 1 | Dimension 2 | Dimension 3 |
-| ------ | ------ | ------ | ------ | ------ |
-| Support Vector Machine | 77% | 86.7% | 73% | 68.7% |
-| Logistic Regression | 67% | 70% | 73% | 66% |
-| Neural Network | 77% | 89% | 55% | 60% |
+| Method | Dimension 0 | Dimension 1 | Dimension 2 | Dimension 3 | Multi-class |
+| ------ | ------ | ------ | ------ | ------ | ------ |
+| Support Vector Machine | 77% | 86.7% | 73% | 68.7% | 30% |
+| Logistic Regression | 67% | 70% | 73% | 66% |   |
+| Neural Network | 77% | 89% | 55% | 60% | 24% |
 
 
 ## Reference:
