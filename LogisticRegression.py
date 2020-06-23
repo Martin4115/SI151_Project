@@ -1,0 +1,49 @@
+import numpy as np
+import csv
+import sklearn
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import GridSearchCV, train_test_split
+from sklearn.linear_model import LogisticRegression as LR
+from sklearn.preprocessing import StandardScaler
+
+c_index = 0
+run_proportion = 0.3  # To accelerate the computation
+total_size = 8675
+
+features = []
+i = 0
+
+with open('./feature_dim200_sg0.csv', 'r', encoding='UTF-8') as f:
+	reader = csv.reader(f)
+	for row in reader:
+		i += 1
+		features.append(row)
+		if i > run_proportion*total_size:
+			break
+
+data = []
+for row in features:
+	row_data = []
+	for i in range(len(row)):
+		if i == 0:
+			row_data.append(int(row[0][c_index]))
+		else:
+			row_data.append(float(row[i]))
+	data.append(row_data)
+
+data = np.asarray(data)
+y, x = np.split(data, (1,), axis=1)
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, random_state=2, train_size=0.8)
+
+def LogisticRegression(x_train, x_test, y_train, y_test):
+    lr = LR(multi_class = 'multinomial',class_weight='balanced',)
+    c_range = np.logspace(-5, 15, 11, base=2)
+    param_grid = [{'C': c_range}]
+    grid = GridSearchCV(lr, param_grid, cv=3, n_jobs=-1)
+    clf = grid.fit(x_train, y_train.ravel())
+    score = grid.score(x_test, y_test)
+    print("精度为", score)
+
+LogisticRegression(x_train, x_test, y_train, y_test)
