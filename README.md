@@ -14,7 +14,7 @@
 :heavy_check_mark: SVM  &emsp; Accuracy: 78% for binary classification</br>
 :heavy_check_mark: Logistic regression &emsp; Accuracy: 66% </br>
 :heavy_minus_sign: Naive bayes/LDA </br>
-:heavy_minus_sign: Neural network </br>
+:heavy_check_mark: Neural network </br>
 :heavy_minus_sign: Come up with something new </br>
 :heavy_minus_sign: Write the report. </br>
 
