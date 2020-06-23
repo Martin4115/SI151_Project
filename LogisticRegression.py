@@ -7,8 +7,8 @@ from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.linear_model import LogisticRegression as LR
 from sklearn.preprocessing import StandardScaler
 
-c_index = 0
-run_proportion = 0.3  # To accelerate the computation
+c_index = 3
+run_proportion = 1
 total_size = 8675
 
 features = []
@@ -38,12 +38,13 @@ y, x = np.split(data, (1,), axis=1)
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, random_state=2, train_size=0.8)
 
 def LogisticRegression(x_train, x_test, y_train, y_test):
-    lr = LR(multi_class = 'multinomial',class_weight='balanced',)
+    lr = LR(multi_class = 'multinomial',class_weight='balanced',solver = 'lbfgs',max_iter = 3000)
     c_range = np.logspace(-5, 15, 11, base=2)
     param_grid = [{'C': c_range}]
     grid = GridSearchCV(lr, param_grid, cv=3, n_jobs=-1)
     clf = grid.fit(x_train, y_train.ravel())
     score = grid.score(x_test, y_test)
-    print("精度为", score)
+    print("c_index = ",c_index ," 精度为", score)
 
 LogisticRegression(x_train, x_test, y_train, y_test)
+'''‘lbfgs’ ‘newton-cg’ ‘sag’ ‘saga’'''

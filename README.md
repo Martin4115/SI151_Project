@@ -31,4 +31,6 @@
 [Distributed Representations of Words and Phrases and their Compositionality](https://arxiv.org/abs/1310.4546) </br>
 [Machine Learning Approach to Personality Type Prediction Based on the Myers-Briggs Type Indicator](https://www.researchgate.net/publication/339935842_Machine_Learning_Approach_to_Personality_Type_Prediction_Based_on_the_Myers-Briggs_Type_Indicator_R) </br>
 ### Neural network classifier
-[Tensorflow inplementation](https://blog.csdn.net/sinat_29957455/article/details/78324082)
+[Tensorflow inplementation](https://blog.csdn.net/sinat_29957455/article/details/78324082)</br>
+### Logistic Regression
+[Sklearn-LogisticRegression](https://blog.csdn.net/CherDW/article/details/54891073)</br>
