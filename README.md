@@ -23,7 +23,7 @@
 | Method | Dimension 0 | Dimension 1 | Dimension 2 | Dimension 3 |
 | ------ | ------ | ------ | ------ | ------ |
 | Support Vector Machine | 77% | 86.7% | 73% | 68.7% |
-| Logistic Regression |   |    |   |   |
+| Logistic Regression | 67% | 70% | 73% | 66% |
 | Neural Network | 77% | 89% | 55% | 60% |
 
 
