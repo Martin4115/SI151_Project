@@ -13,7 +13,7 @@
 :heavy_check_mark: Feature extraction </br>
 :heavy_check_mark: SVM  &emsp; </br>
 :heavy_check_mark: Logistic regression &emsp;  </br>
-:heavy_minus_sign: Naive bayes/LDA </br>
+:heavy_check_mark: Naive bayes </br>
 :heavy_check_mark: Neural network </br>
 :heavy_minus_sign: Come up with something new </br>
 :heavy_minus_sign: Write the report. </br>
@@ -24,6 +24,7 @@
 | ------ | ------ | ------ | ------ | ------ | ------ |
 | Support Vector Machine | 77% | 86.7% | 73% | 68.7% | 33.9% |
 | Logistic Regression | 67% | 70% | 73% | 66% |   |
+| Naive Bayes | 38% | 75% | 59% | 47% |   |
 | Neural Network | 77% | 89% | 55% | 60% | 24% |
 
 
