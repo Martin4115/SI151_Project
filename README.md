@@ -11,8 +11,8 @@
 
 ## Roadmap
 :heavy_check_mark: Feature extraction </br>
-:heavy_check_mark: SVM  &emsp; Accuracy: 78% for binary classification</br>
-:heavy_check_mark: Logistic regression &emsp; Accuracy: 66% </br>
+:heavy_check_mark: SVM  &emsp; </br>
+:heavy_check_mark: Logistic regression &emsp;  </br>
 :heavy_minus_sign: Naive bayes/LDA </br>
 :heavy_check_mark: Neural network </br>
 :heavy_minus_sign: Come up with something new </br>
