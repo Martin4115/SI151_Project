@@ -23,7 +23,7 @@
 | Method | Dimension 0 | Dimension 1 | Dimension 2 | Dimension 3 | Multi-class |
 | ------ | ------ | ------ | ------ | ------ | ------ |
 | Support Vector Machine | 77% | 86.7% | 73% | 68.7% | 33.9% |
-| Logistic Regression | 67% | 70% | 73% | 66% |   |
+| Logistic Regression | 67% | 70% | 73% | 66% | 16% |
 | Naive Bayes | 38% | 75% | 59% | 47% |   |
 | Neural Network | 77% | 89% | 55% | 60% | 24% |
 
@@ -43,3 +43,4 @@
 [Tensorflow inplementation](https://blog.csdn.net/sinat_29957455/article/details/78324082)</br>
 ### Logistic Regression
 [Sklearn-LogisticRegression](https://blog.csdn.net/CherDW/article/details/54891073)</br>
+[LogisticRegressionCV Arguments Introduction](https://blog.csdn.net/weixin_41690708/article/details/95171333)</br>
