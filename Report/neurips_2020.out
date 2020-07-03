@@ -9,7 +9,10 @@
 \BOOKMARK [2][-]{subsection.3.3}{Paragraph Vectorization}{section.3}% 9
 \BOOKMARK [1][-]{section.4}{Model for Prediction}{}% 10
 \BOOKMARK [2][-]{subsection.4.1}{Logistic Regression}{section.4}% 11
-\BOOKMARK [1][-]{section.5}{Experiments and Results}{}% 12
-\BOOKMARK [1][-]{section.6}{Discussion}{}% 13
-\BOOKMARK [1][-]{section.7}{Conclusion}{}% 14
-\BOOKMARK [1][-]{section.8}{Contribution}{}% 15
+\BOOKMARK [2][-]{subsection.4.2}{Naive Bayes}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.3}{Support Vector Regreesion}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.4}{XGBoost}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{Experiments and Results}{}% 15
+\BOOKMARK [1][-]{section.6}{Discussion}{}% 16
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 17
+\BOOKMARK [1][-]{section.8}{Contribution}{}% 18

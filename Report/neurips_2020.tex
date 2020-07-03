@@ -114,6 +114,12 @@ $$ \xi_i \ge 0 $$
 
 
 We can implement this algorithm with kernel which identifies boundaries in a high-dimensional feature space,thus  we can split the training set into labeled 16 categories.
+
+\subsection{XGBoost}
+Suppose we have a dataset $\mathcal{D}$, $\mathcal{D}=\left\{\left(\mathbf{x}_{i}, y_{i}\right)\right\}\left(|\mathcal{D}|=n, \mathbf{x}_{i} \in \mathbb{R}^{m}, y_{i} \in \mathbb{R}\right)$. XGBoost  integrates the result of CART trees, $\hat{y}_{i}=\phi\left(\mathbf{x}_{i}\right)=\sum_{k=1}^{K} f_{k}\left(\mathbf{x}_{i}\right)$, $f_{k} \in \mathcal{F}$ where  $\mathcal{F}=\left\{f(\mathbf{x})=w_{q(\mathbf{x})}\right\}\left(q: \mathbb{R}^{m} \rightarrow T, w \in \mathbb{R}^{T}\right)$ repersents the construction of each CART tree. Let $T$ be the number of leaf nodes, $W$ is the score of leaf nodes. $\gamma$ is a parament to controll the number of leaf nodes in order to  avoid over fitting. XGBoost has the loss function $\Sigma_{i = 1}^n l(y_i,\hat{y_i})+\Sigma_{k = 1}^K\Omega(f_k) \quad where \quad  \Omega(f) = \gamma T + \frac{1}{2}\lambda\mid\mid w\mid\mid^2$. The first part repersents the training loss and the second part repersents the complexity of the trees. Then we update the model by additive manner, $\hat{y}_{i}^{(t)}=\sum_{k=1}^{t} f_{k}\left(x_{i}\right)=\hat{y}_{i}^{(t-1)}+f_{t}\left(x_{i}\right)$, with the loss function in $t$ turn is $\mathcal{L}^{(t)}=\sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t-1)}+f_{t}\left(\mathbf{x}_{i}\right)\right)+\Omega\left(f_{t}\right)$. Use taylor expansion to expand $\mathcal{L}^{(t)}$, only take the first three terms and take the optimized value of leaf node into it, we get $\tilde{\mathcal{L}}^{(t)}(q)=-\frac{1}{2} \sum_{j=1}^{T} \frac{\left(\sum_{i \in I_{j}} g_{i}\right)^{2}}{\sum_{i \in I_{j}} h_{i}+\lambda}+\gamma T$. We use it to evaluate the quality of a tree, a smaller score means a higher quality. We choose to use a greedy algorithm, start with a single leaf node, iteratively split to add nodes to the tree.
+
+
+
 \section{Experiments and Results}
 
 \section{Discussion}
