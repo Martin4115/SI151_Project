@@ -1,0 +1,15 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Related Works}{}% 2
+\BOOKMARK [1][-]{section.3}{Feature Extraction}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Dataset}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Word2vec}{section.3}% 5
+\BOOKMARK [3][-]{subsubsection.3.2.1}{One-hot Coding}{subsection.3.2}% 6
+\BOOKMARK [3][-]{subsubsection.3.2.2}{CBOW Model}{subsection.3.2}% 7
+\BOOKMARK [3][-]{subsubsection.3.2.3}{N-gram Model}{subsection.3.2}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Paragraph Vectorization}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Model for Prediction}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{Logistic Regression}{section.4}% 11
+\BOOKMARK [1][-]{section.5}{Experiments and Results}{}% 12
+\BOOKMARK [1][-]{section.6}{Discussion}{}% 13
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 14
+\BOOKMARK [1][-]{section.8}{Contribution}{}% 15

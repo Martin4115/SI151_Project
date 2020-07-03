@@ -91,6 +91,12 @@ So far, we have make it possible to get the feature vetor from words. What we wa
 We decide to apply a naive but efficient method to compute the feature for each paragraph, which is take the weight sum of all word vectors. Suppose the paragraph as $K$ different words, we have $V = \sum_{i=1}^{K}w_iv_i$ where $v_i$ stands for the word vector for word i and $w_i = \frac{\text{\# of word i}}{\text{total length of paragraph}}$.
 
 \section{Model for Prediction}
+\subsection{Logistic Regression}
+
+Applying logistic regression, we get the model $Z = \theta_0 x_0 + \theta_1 x_1 +\theta_2 x_2 + ... +\theta_n x_n$. Then we use sigmoid function to transform $Z$ to $g\left( Z\right)  = \frac{1}{1+ e^{-z}}$, where $g(Z)  \in \left[0,1\right]$. Take $g(Z)$ into  the posterior probabilities, and use sum of squares as the loss function, we get $J\left( \Theta\right) = \frac{1}{n} Loss\left( h_\Theta\left( X\right), y \right) $. Repeat the update of $\theta_j^{new} = \theta_j^{old} - \alpha \frac{\partial}{\partial \theta_j}J\left( \theta\right) $ until covergence, then we got the paraments needed by the model.
+
+In logistic regression, we firstly find the posterior probabilities of the $K$ classes via linear function in $x$, which yields $Pr\left(G = k\mid X = x\right) = \frac{exp\left(\beta_{k0}+x^{T} \beta_{k}\right)}{1+\Sigma_{l=1}^{K-1}exp\left(\beta_{l0}+x^{T} \beta_{l}\right)}$, $k = 1,...,K-1$, then we get the log-likelihood function $l(\theta) = logPr\left(g\mid X; \theta\right) $, and use maximum likelihood estimation $\left(MLE\right)$ to estimate parameter set $\theta = \{\beta_{10},\beta_1,...,\beta_{\left(K-1\right)0},\beta_{K-1} \}$. Then we use Newton-Raphson algorithm to update each $\beta$ by $\beta_{new} = \beta_{old} - \frac{f^{'}\left(x_{old}\right)}{f^{''}\left(x_{old}\right)}$ until covergence.
+
 
 \section{Experiments and Results}
 
