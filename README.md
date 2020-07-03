@@ -15,8 +15,9 @@
 :heavy_check_mark: Logistic regression  </br>
 :heavy_check_mark: Naive bayes </br>
 :heavy_check_mark: Neural network </br>
-:heavy_minus_sign: Come up with something new </br>
+:heavy_check_mark: Come up with something new </br>
 :heavy_minus_sign: Write the report. </br>
+:heavy_minus_sign: Record the vadio. </br>
 
 ## Accuracy summary
 
@@ -25,7 +26,8 @@
 | Support Vector Machine | 77% | 86.7% | 73% | 68.7% | 33.9% |
 | Logistic Regression | 67% | 70% | 73% | 66% | 16% |
 | Naive Bayes | 38% | 75% | 59% | 47% |   |
-| Neural Network | 77% | 89% | 55% | 60% | 24% |
+| Sequential Network | 77% | 89% | 55% | 60% | 24% |
+| LSTM Network | 82.3% | 91.7% | 74.7% | 73.2% | 41.2% |
 
 
 ## Reference:
