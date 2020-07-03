@@ -1,0 +1,120 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2020
+
+% ready for submission
+% \usepackage{neurips_2020}
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2020}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+     \usepackage[final]{neurips_2020}
+
+% to avoid loading the natbib package, add option nonatbib:
+% \usepackage[nonatbib]{neurips_2020}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{indentfirst}
+\usepackage{amsmath}
+
+\title{MBTI Personality Type Based on Social Media Record}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+\author{%
+  Xinyi Cai\\
+  2018533085\\
+  \texttt{caixy@} \\
+  \And
+  Beiyuan Yang \\
+  39132991 \\
+  \texttt{yangby@} \\
+  \And
+  Wenhui Qiao \\
+  57425238 \\
+  \texttt{qiaowh@} \thanks{Email suffix: @shanghaitech.edu.cn} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  The abstract paragraph should be indented \nicefrac{1}{2}~inch (3~picas) on
+  both the left- and right-hand margins. Use 10~point type, with a vertical
+  spacing (leading) of 11~points.  The word \textbf{Abstract} must be centered,
+  bold, and in point size 12. Two line spaces precede the abstract. The abstract
+  must be limited to one paragraph.
+\end{abstract}
+
+\section{Introduction}
+
+
+\section{Related Works}
+
+
+\section{Feature Extraction}
+\subsection{Dataset}
+We accquired the dataset from \href{https://www.kaggle.com/datasnaek/mbti-type}{kaggle}. It contains record of social media of 8675 users, each of the data contains 50 posts on social media, as well as the type label for those 8675 users. The general distribution over these types is summarized in the graph.
+
+\subsection{Word2vec}
+Before we dig into the classifiation tasks for these users, we must convert our text data to vector, so that it can be applied to by classification algorithm. In our project, we adapted three methods for converting vectors to text data, particularly they are one-hot coding, CBOW model and N-gram model.
+
+\subsubsection{One-hot Coding}
+Suppose we have a dictionary $W$, which contains N words, i.e.$|W|=N$. Then one-hot coding map each word to a vector $x \in \{0,1\}^N$, where $x_i=1$ if $x=W_i$, and $x_i=0$ otherwise. The picture shows a simple example of the principle of one-hot coding.\\
+One possible improvement for one-hot coding is \emph{one-hot hash trick}, whose dimension is reduced by hash function. We also tried to improve the performence by applying hash function. One major shortcoming is unavoidable hash collision, which could map different values to same target.
+
+\subsubsection{CBOW Model}
+CBOW Model stands for continues bag-of-word model, which was illustrated by Xin Rong in his publication. COBW takes the words before and after the target word, to predict the target word, which is actually a way of dimension reduction. In this way, we would be able to get vectorized word representation in much lower dimension, which make it possible and efficient for future classification. The picture shows a simple structure of the network used in CBOW model. One thing to be noted is that the activation function of the hidden layer is linear, which is more similar to \emph{projection layer}.
+
+\subsubsection{N-gram Model}
+Unlike CBOW model, N-gram model intend to predict the target word based on the N word before the target words. Suppose we have a sentence $S=\left( w_1,w_2,\cdots,w_n\right) $, we have $$p(S)=p\left(w_{1} w_{2} \cdots w_{n}\right)=p\left(w_{1}\right) p\left(w_{2} \mid w_{1}\right) \cdots p\left(w_{n} \mid w_{n-1} \cdots w_{2} w_{1}\right)$$ To reduce the parameter space, we adopt \emph{Markov assumption}, which state that the word's appearence only depend on the first N words before it: $$p\left(w_{1} \cdots w_{n}\right)=\prod p\left(w_{i} \mid w_{i-1} \cdots w_{1}\right) \approx \prod p\left(w_{i} \mid w_{i-1} \cdots w_{i-N+1}\right)$$. Then we could estimate the conditional probability with MLE, which takes the frequencies of words to calculate:$$p\left(w_{n} \mid w_{n-1} w_{n-2}\right)=\frac{C\left(w_{n-2} w_{n-1} w_{n}\right)}{C\left(w_{n-2} w_{n-1}\right)}$$
+
+\subsection{Paragraph Vectorization}
+So far, we have make it possible to get the feature vetor from words. What we want to do is to get the feature vector for each user, which represent the feature for whole paragraph.\\
+We decide to apply a naive but efficient method to compute the feature for each paragraph, which is take the weight sum of all word vectors. Suppose the paragraph as $K$ different words, we have $V = \sum_{i=1}^{K}w_iv_i$ where $v_i$ stands for the word vector for word i and $w_i = \frac{\text{\# of word i}}{\text{total length of paragraph}}$.
+
+\section{Model for Prediction}
+
+\section{Experiments and Results}
+
+\section{Discussion}
+
+\section{Conclusion}
+%-------------------------------------------------------------------------
+
+
+\section{Contribution}
+
+\small
+
+[1] Alexander, J.A.\ \& Mozer, M.C.\ (1995) Template-based algorithms for
+connectionist rule extraction. In G.\ Tesauro, D.S.\ Touretzky and T.K.\ Leen
+(eds.), {\it Advances in Neural Information Processing Systems 7},
+pp.\ 609--616. Cambridge, MA: MIT Press.
+
+[2] Bower, J.M.\ \& Beeman, D.\ (1995) {\it The Book of GENESIS: Exploring
+  Realistic Neural Models with the GEneral NEural SImulation System.}  New York:
+TELOS/Springer--Verlag.
+
+[3] Hasselmo, M.E., Schnell, E.\ \& Barkai, E.\ (1995) Dynamics of learning and
+recall at excitatory recurrent synapses and cholinergic modulation in rat
+hippocampal region CA3. {\it Journal of Neuroscience} {\bf 15}(7):5249-5262.
+
+\end{document}
