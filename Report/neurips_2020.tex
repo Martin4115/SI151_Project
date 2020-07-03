@@ -97,7 +97,23 @@ Applying logistic regression, we get the model $Z = \theta_0 x_0 + \theta_1 x_1 
 
 In logistic regression, we firstly find the posterior probabilities of the $K$ classes via linear function in $x$, which yields $Pr\left(G = k\mid X = x\right) = \frac{exp\left(\beta_{k0}+x^{T} \beta_{k}\right)}{1+\Sigma_{l=1}^{K-1}exp\left(\beta_{l0}+x^{T} \beta_{l}\right)}$, $k = 1,...,K-1$, then we get the log-likelihood function $l(\theta) = logPr\left(g\mid X; \theta\right) $, and use maximum likelihood estimation $\left(MLE\right)$ to estimate parameter set $\theta = \{\beta_{10},\beta_1,...,\beta_{\left(K-1\right)0},\beta_{K-1} \}$. Then we use Newton-Raphson algorithm to update each $\beta$ by $\beta_{new} = \beta_{old} - \frac{f^{'}\left(x_{old}\right)}{f^{''}\left(x_{old}\right)}$ until covergence.
 
+\subsection{Naive Bayes}
+Naive Bayes is a conditional probability model,where  assumes that all the features that go into the model is independent of each other.
 
+$$ P(Y= k|x_1x_2..x_k)= \frac{P(x_1|Y=k)*P(x_2|Y=k)...P(x_n|Y=k)*P(Y = k) }{ P(x_1)*P(x_2)...* P(X_n)}$$
+
+In this question, to determine which MBTI type the person belongs to, we give a feature vector\\ x = (x1,x2,...,xn). Using Baye $ p(C_k|x) = \frac{p(C_k)p(x|C_k)}{p(x)} $. Using the "naive" conditional assumption, the joint model can be expressed as $p(C_k|x_1x_2...x_n) = p(C_k)\prod_{i-1}^n p(x_1|C_k)$ 
+
+\subsection{Support Vector Regreesion}
+
+SVM is a supervised machine learning algorithm that aims to find the maximum margins between different classes by determining the weights and bias of the separating hyperplane. Given dataset \\S = ${(x_i,y_i)}_{i=1}^m $ We define our algorithm as follow:
+
+$$ min_{w,\xi_1,...\xi_m}||w||^2 + C\sum_{i=1}^m \xi_i $$
+$$ \emph{s.t} \ for \ all \ i, \ y_i w x_i \ge 1 - \xi_i $$
+$$ \xi_i \ge 0 $$  
+
+
+We can implement this algorithm with kernel which identifies boundaries in a high-dimensional feature space,thus  we can split the training set into labeled 16 categories.
 \section{Experiments and Results}
 
 \section{Discussion}
