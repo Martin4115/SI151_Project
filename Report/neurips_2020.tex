@@ -26,7 +26,7 @@
 \usepackage{microtype}      % microtypography
 \usepackage{indentfirst}
 \usepackage{amsmath}
-
+\usepackage{graphicx}
 \title{Social Media based MBTI Personality Prediction}
 % The \author macro works with any number of authors. There are two commands
 % used to separate the names and addresses of multiple authors: \And and \AND.
@@ -80,7 +80,7 @@ One possible improvement for one-hot coding is \emph{one-hot hash trick}, whose 
 CBOW Model stands for continues bag-of-word model, which was illustrated by Xin Rong in his publication. COBW takes the words before and after the target word, to predict the target word, which is actually a way of dimension reduction. In this way, we would be able to get vectorized word representation in much lower dimension, which make it possible and efficient for future classification. The picture shows a simple structure of the network used in CBOW model. One thing to be noted is that the activation function of the hidden layer is linear, which is more similar to \emph{projection layer}.
 
 \subsubsection{N-gram Model}
-Unlike CBOW model, N-gram model intend to predict the target word based on the N word before the target words. Suppose we have a sentence $S=\left( w_1,w_2,\cdots,w_n\right) $, we have $$p(S)=p\left(w_{1} w_{2} \cdots w_{n}\right)=p\left(w_{1}\right) p\left(w_{2} \mid w_{1}\right) \cdots p\left(w_{n} \mid w_{n-1} \cdots w_{2} w_{1}\right)$$ To reduce the parameter space, we adopt \emph{Markov assumption}, which state that the word's appearence only depend on the first N words before it: $$p\left(w_{1} \cdots w_{n}\right)=\prod p\left(w_{i} \mid w_{i-1} \cdots w_{1}\right) \approx \prod p\left(w_{i} \mid w_{i-1} \cdots w_{i-N+1}\right)$$. Then we could estimate the conditional probability with MLE, which takes the frequencies of words to calculate:$$p\left(w_{n} \mid w_{n-1} w_{n-2}\right)=\frac{C\left(w_{n-2} w_{n-1} w_{n}\right)}{C\left(w_{n-2} w_{n-1}\right)}$$
+Unlike CBOW model, N-gram model intend to predict the target word based on the N word before the target words. Suppose we have a sentence, to reduce the parameter space, we adopt \emph{Markov assumption}, which state that the word's appearence only depend on the first N words before it: $$p\left(w_{1} \cdots w_{n}\right)=\prod p\left(w_{i} \mid w_{i-1} \cdots w_{1}\right) \approx \prod p\left(w_{i} \mid w_{i-1} \cdots w_{i-N+1}\right)$$. Then we could estimate the conditional probability with MLE, which takes the frequencies of words to calculate:$$p\left(w_{n} \mid w_{n-1} w_{n-2}\right)=\frac{C\left(w_{n-2} w_{n-1} w_{n}\right)}{C\left(w_{n-2} w_{n-1}\right)}$$
 
 \subsection{Paragraph Vectorization}
 So far, we have make it possible to get the feature vetor from words. What we want to do is to get the feature vector for each user, which represent the feature for whole paragraph.\\
@@ -115,6 +115,15 @@ The first attempt we tried is to classify the data with sequential neural networ
 During the experiment, we find that the simple sequential network suffered from gradient vinish problem, which limit its performence. To overcome it, we import the long-short term memory recurrent network, which was originally proposed by Sepp Hochreiter and Jürgen Schmidhuber in 1997. It gains an ability to bring information between time slots. Suppose it has a conveyor parallel to the sequence we process. The information from the test could get onto the conveyor at any position, and was sent to later time points. This is how it works: Save the information for later using, to prevent the earlier signal from disappearing while processing.\\
 The structure of LSTM net we used was shown in the graph. It is considered to be a effective way to deal with the problem of gradient vanishing.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=4cm]{fig/oneHot.jpg}
+	\includegraphics[width=4cm]{fig/snn.jpg}
+	\includegraphics[width=4cm]{fig/lstm.jpg}
+	\caption{\emph{Left:} One-hot coding. \emph{Middle:} Sequential neural Network. \emph{Left:} LSTM Network.}
+	\label{fig:result1}
+\end{figure}
+
 \subsection{XGBoost}
 
 Xgboost is an improvement of gradient lifting algorithm. Newton method is used to solve the extreme value of loss function. It applies Taylor expansion to the loss function, only keep the first two orders, and the regularization term is added to the loss function.
@@ -132,10 +141,28 @@ We update the model by additive manner, with the loss function in $t$ turn as fo
 Use taylor expansion to expand $\mathcal{L}^{(t)}$, only take the first three terms and take the optimized value of leaf node into it, we get $\tilde{\mathcal{L}}^{(t)}(q)=-\frac{1}{2} \sum_{j=1}^{T} \frac{\left(\sum_{i \in I_{j}} g_{i}\right)^{2}}{\sum_{i \in I_{j}} h_{i}+\lambda}+\gamma T$. We use it to evaluate the quality of a tree, a smaller score means a higher quality. We choose to use a greedy algorithm, start with a single leaf node, iteratively split to add nodes to the tree, which can be concluded that $$\mathcal{L}_{split} = \frac{1}{2} \left[ \frac{\left( \Sigma_{i \in I_{L}} g_i\right) ^2}{\Sigma_{i \in I_{L}} h_i+\lambda} + \frac{\left( \Sigma_{i \in I_{R}} g_i\right) ^2}{\Sigma_{i \in I_{R}} h_i+\lambda} - \frac{\left( \Sigma_{i \in I} g_i\right) ^2}{\Sigma_{i \in I} h_i+\lambda} \right] - \gamma  $$
 
 \section{Experiments and Results}
-
-\section{Discussion}
+Here we listed the classification result we got. While the detail of experiment result is listed in the section 8.2, we visualize the result here.
+For the feature extraction part, we find that the performance from different result are almost the same, so we ignore difference of ways of extracting figure. \\
+Here, we compare the result from different methods for classification as well as different dimension. We find that the method of XGBoost and LSTM network get the best performance among these methods. It is also clear that some dimension like dimension 1 are more classifiable than others such as dimension 2.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=6cm]{fig/result1.jpg}
+	\includegraphics[width=6cm]{fig/result2.jpg}
+	\caption{The classification result.}
+	\label{fig:result}
+\end{figure}
 
 \section{Conclusion}
+Generally speaking, we can predict people's personality type from the social media records with a high probobility. Specifically, it is more accurate to predict whether people are sensing and outgoing, but with less accuracy in predicting the way people act and make decision. Such discovery would lead to futhure phycology research to invest the principle behind it.
+
+\section{Discussion}
+During our project, we have some interesting discovery and some analysis on our method and result.
+\begin{itemize}
+	\item Naive Bayes not capable with our data
+	\item XGBoost is a very popular algorithm, which is used by 17 out of 25 winner projects. However, it is highly parameter dependent. Due to the limitation of computation resource, we can only adjust parameter manually. Should we achieved automatically adjust it, our performance could have been improved more.
+	\item Simple sequential networks suffer a lot from gradient vanishing, which means the former information could not be applied to latter computation. Such limitation is overcome by recurrent neural network. The LSTM network managed to forget useless information and memorize crucial information, so it produced the best result among all methods.
+\end{itemize}
+
 %-------------------------------------------------------------------------
 
 
@@ -163,7 +190,10 @@ hippocampal region CA3. {\it Journal of Neuroscience} {\bf 15}(7):5249-5262.
  
 \section{Supplementar Materials}
 
+\subsection{Related Works}
  Myers-Briggs Type Index classifies personality types in 16 ways on four dimensions, which are introverted/extroverted,  sensation/intuition, thinking/feeling and judgment /Perception[20]. Golbeck was the first few people using maching learning technology to predict personality based on Twitter comments. Komisin and Guinn then used naive bayes and SVM to predict MBTI tpye based on graduate student's writing materials and found svm had better performance compare to naive bayes. Few years later, gray prediction models, multiple regression models, and multi-task models were applied on this field and gray prediction models performed the best among these three. Later, Tandra used five personality models and deep learning to predict MBTI personality type and found a significant improvement in performance compared to traditional algorithm using advanced algorithm. Recent years,Hernandez and Knight tried various kinds of RNN to train the model, and the result showed that LSTM gave the best prediction rate.
+ 
+\subsubsection{Original Experiment Data}
 
 \section{Contribution}
 
