@@ -101,7 +101,7 @@ Naive Bayes is a conditional probability model,where  assumes that all the featu
 
 $$ P(Y= k|x_1x_2..x_k)= \frac{P(x_1|Y=k)*P(x_2|Y=k)...P(x_n|Y=k)*P(Y = k) }{ P(x_1)*P(x_2)...* P(X_n)}$$
 
-In this question, to determine which MBTI type the person belongs to, we give a feature vector\\ x = (x1,x2,...,xn). Using Baye $ p(C_k|x) = \frac{p(C_k)p(x|C_k)}{p(x)} $. Using the "naive" conditional assumption, the joint model can be expressed as $p(C_k|x_1x_2...x_n) = p(C_k)\prod_{i-1}^n p(x_1|C_k)$ 
+In this question, to determine which MBTI type the person belongs to, we give a feature vector\\ $x = (x_1,x_2,...,x_n)$. Using Baye $ p(C_k|x) = \frac{p(C_k)p(x|C_k)}{p(x)} $. Using the "naive" conditional assumption, the joint model can be expressed as $p(C_k|x_1x_2...x_n) = p(C_k)\prod_{i-1}^n p(x_1|C_k)$ 
 
 \subsection{Support Vector Regreesion}
 
@@ -110,45 +110,38 @@ $$ min_{w,\xi_1,...\xi_m}||w||^2 + C\sum_{i=1}^m \xi_i \quad \emph{s.t} \ for \ 
 We can implement this algorithm with kernel which identifies boundaries in a high-dimensional feature space,thus  we can split the training set into labeled 16 categories.
 \subsection{Neural Network}
 \subsubsection{Simple Sequential Network}
-The first attempt we tried is to classify the data with sequential neural network. It has two hidden layer, which consist of 32 unit, and take RELU as activation function. In the output layer, we use sigmoid function to output the classification result between $(0,1)$.
+The first attempt we tried is to classify the data with sequential neural network. It has two hidden layer, which consist of 32 unit, and take RELU as activation function. In the output layer, we use sigmoid function to output the classification result between $(0,1)$. The structure is shown in the picture \ref{fig:result1}.
 \subsubsection{LSTM Recurrent Network}
-During the experiment, we find that the simple sequential network suffered from gradient vinish problem, which limit its performence. To overcome it, we import the long-short term memory recurrent network, which was originally proposed by Sepp Hochreiter and Jürgen Schmidhuber in 1997. It gains an ability to bring information between time slots. Suppose it has a conveyor parallel to the sequence we process. The information from the test could get onto the conveyor at any position, and was sent to later time points. This is how it works: Save the information for later using, to prevent the earlier signal from disappearing while processing.\\
-The structure of LSTM net we used was shown in the graph. It is considered to be a effective way to deal with the problem of gradient vanishing.
+During the experiment, we find that the simple sequential network suffered from gradient vinish problem, which limit its performence. To overcome it, we import the long-short term memory recurrent network, which was originally proposed by Sepp Hochreiter and Jürgen Schmidhuber in 1997. It gains an ability to bring information between time slots. Save the information for later using, to prevent the earlier signal from disappearing while processing.\\
+The structure of LSTM net we used was shown in the picture \ref{fig:result1}. It is considered to be a effective way to deal with the problem of gradient vanishing.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=4cm]{fig/oneHot.jpg}
 	\includegraphics[width=4cm]{fig/snn.jpg}
 	\includegraphics[width=4cm]{fig/lstm.jpg}
-	\caption{\emph{Left:} One-hot coding. \emph{Middle:} Sequential neural Network. \emph{Left:} LSTM Network.}
+	\caption{\emph{Left:} One-hot coding. \emph{Middle:} Sequential neural Network. \emph{Right:} LSTM Network.}
 	\label{fig:result1}
 \end{figure}
 
 \subsection{XGBoost}
 
-Xgboost is an improvement of gradient lifting algorithm. Newton method is used to solve the extreme value of loss function. It applies Taylor expansion to the loss function, only keep the first two orders, and the regularization term is added to the loss function.
-
+Xgboost is an improvement of gradient lifting algorithm. Newton method is used to solve the extreme value of loss function. It applies Taylor expansion to the loss function, only keep the first two orders, and the regularization term is added to the loss function.\\
 %Suppose we have a dataset $\mathcal{D}$, $\mathcal{D}=\left\{\left(\mathbf{x}_{i}, y_{i}\right)\right\}\left(|\mathcal{D}|=n, \mathbf{x}_{i} \in \mathbb{R}^{m}, y_{i} \in \mathbb{R}\right)$. 
-
-The main idea is to  integrate the result of CART trees, $\hat{y}_{i}=\phi\left(\mathbf{x}_{i}\right)=\sum_{k=1}^{K} f_{k}\left(\mathbf{x}_{i}\right)$, $f_{k} \in \mathcal{F}$ where  $\mathcal{F}=\left\{f(\mathbf{x})=w_{q(\mathbf{x})}\right\}\left(q: \mathbb{R}^{m} \rightarrow T, w \in \mathbb{R}^{T}\right)$ repersents the construction of each CART tree. 
-
+The main idea is to  integrate the result of CART trees, $\hat{y}_{i}=\phi\left(\mathbf{x}_{i}\right)=\sum_{k=1}^{K} f_{k}\left(\mathbf{x}_{i}\right)$, $f_{k} \in \mathcal{F}$ where  $\mathcal{F}=\left\{f(\mathbf{x})=w_{q(\mathbf{x})}\right\}\left(q: \mathbb{R}^{m} \rightarrow T, w \in \mathbb{R}^{T}\right)$ repersents the construction of each CART tree. \\
 %The loss function can be expressed as $\Sigma_{i = 1}^n l(y_i,\hat{y_i})+\Sigma_{k = 1}^K\Omega(f_k) \quad where \quad  \Omega(f) = \gamma T + \frac{1}{2}\lambda \left|\left|w\right|\right| ^2$. The first part repersents the training loss and the second part repersents the complexity of the trees.
-
-We update the model by additive manner, with the loss function in $t$ turn as following: $$\hat{y}_{i}^{(t)}=\sum_{k=1}^{t} f_{k}\left(x_{i}\right)=\hat{y}_{i}^{(t-1)}+f_{t}\left(x_{i}\right)$$ $$\mathcal{L}^{(t)}=\sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t-1)}+f_{t}\left(\mathbf{x}_{i}\right)\right)+\Omega\left(f_{t}\right), \quad where \quad  \Omega(f) = \gamma T + \frac{1}{2}\lambda \left|\left|w\right|\right| ^2$$ Here $T$ is the number of leaf nodes, $W$ is the score of leaf nodes, and $\gamma$ is a parament to controll the number of leaf nodes in order to  avoid over fitting.  
-
-%It takes both  training loss and tthe complexity of trees into account.
-
-Use taylor expansion to expand $\mathcal{L}^{(t)}$, only take the first three terms and take the optimized value of leaf node into it, we get $\tilde{\mathcal{L}}^{(t)}(q)=-\frac{1}{2} \sum_{j=1}^{T} \frac{\left(\sum_{i \in I_{j}} g_{i}\right)^{2}}{\sum_{i \in I_{j}} h_{i}+\lambda}+\gamma T$. We use it to evaluate the quality of a tree, a smaller score means a higher quality. We choose to use a greedy algorithm, start with a single leaf node, iteratively split to add nodes to the tree, which can be concluded that $$\mathcal{L}_{split} = \frac{1}{2} \left[ \frac{\left( \Sigma_{i \in I_{L}} g_i\right) ^2}{\Sigma_{i \in I_{L}} h_i+\lambda} + \frac{\left( \Sigma_{i \in I_{R}} g_i\right) ^2}{\Sigma_{i \in I_{R}} h_i+\lambda} - \frac{\left( \Sigma_{i \in I} g_i\right) ^2}{\Sigma_{i \in I} h_i+\lambda} \right] - \gamma  $$
+We update the model by additive manner, with the loss function in $t$ turn as following: $$\hat{y}_{i}^{(t)}=\sum_{k=1}^{t} f_{k}\left(x_{i}\right)=\hat{y}_{i}^{(t-1)}+f_{t}\left(x_{i}\right)$$ $$\mathcal{L}^{(t)}=\sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t-1)}+f_{t}\left(\mathbf{x}_{i}\right)\right)+\Omega\left(f_{t}\right), \quad where \quad  \Omega(f) = \gamma T + \frac{1}{2}\lambda \left|\left|w\right|\right| ^2$$ Here $T$ is the number of leaf nodes, $W$ is the score of leaf nodes, and $\gamma$ is a parament to controll the number of leaf nodes in order to  avoid over fitting. \\
+Use taylor expansion to expand $\mathcal{L}^{(t)}$, we get $\tilde{\mathcal{L}}^{(t)}(q)=-\frac{1}{2} \sum_{j=1}^{T} \frac{\left(\sum_{i \in I_{j}} g_{i}\right)^{2}}{\sum_{i \in I_{j}} h_{i}+\lambda}+\gamma T$. We use it to evaluate the quality of a tree, a smaller score means a higher quality. We choose to use a greedy algorithm, start with a single leaf node, iteratively split to add nodes to the tree, which can be concluded that $$\mathcal{L}_{split} = \frac{1}{2} \left[ \frac{\left( \Sigma_{i \in I_{L}} g_i\right) ^2}{\Sigma_{i \in I_{L}} h_i+\lambda} + \frac{\left( \Sigma_{i \in I_{R}} g_i\right) ^2}{\Sigma_{i \in I_{R}} h_i+\lambda} - \frac{\left( \Sigma_{i \in I} g_i\right) ^2}{\Sigma_{i \in I} h_i+\lambda} \right] - \gamma  $$
 
 \section{Experiments and Results}
-Here we listed the classification result we got. While the detail of experiment result is listed in the section 8.2, we visualize the result here.
+Here we listed the classification result we got. While the detail of experiment result is listed in the section 8.2, we visualize the result here.\\
 For the feature extraction part, we find that the performance from different result are almost the same, so we ignore difference of ways of extracting figure. \\
 Here, we compare the result from different methods for classification as well as different dimension. We find that the method of XGBoost and LSTM network get the best performance among these methods. It is also clear that some dimension like dimension 1 are more classifiable than others such as dimension 2.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=6cm]{fig/result1.jpg}
-	\includegraphics[width=6cm]{fig/result2.jpg}
-	\caption{The classification result.}
+	\includegraphics[width=6.3cm]{fig/result1.jpg}
+	\includegraphics[width=6.3cm]{fig/result2.jpg}
+	%\caption{The classification result.}
 	\label{fig:result}
 \end{figure}
 
@@ -158,7 +151,7 @@ Generally speaking, we can predict people's personality type from the social med
 \section{Discussion}
 During our project, we have some interesting discovery and some analysis on our method and result.
 \begin{itemize}
-	\item Naive Bayes not capable with our data
+	\item When implementing naive bayes, we found a contradiction between the input data vectorized by word2vec and the multinomial package, since the input x of sklearn.multinomialnb must be non-negative, while the outcome of word2vec can be both positive and negative. As a result, we turned to use sklearn.GaussianNB. It is not the most suitable model, which could account for the poor performence.
 	\item XGBoost is a very popular algorithm, which is used by 17 out of 25 winner projects. However, it is highly parameter dependent. Due to the limitation of computation resource, we can only adjust parameter manually. Should we achieved automatically adjust it, our performance could have been improved more.
 	\item Simple sequential networks suffer a lot from gradient vanishing, which means the former information could not be applied to latter computation. Such limitation is overcome by recurrent neural network. The LSTM network managed to forget useless information and memorize crucial information, so it produced the best result among all methods.
 \end{itemize}
@@ -194,8 +187,26 @@ hippocampal region CA3. {\it Journal of Neuroscience} {\bf 15}(7):5249-5262.
  Myers-Briggs Type Index classifies personality types in 16 ways on four dimensions, which are introverted/extroverted,  sensation/intuition, thinking/feeling and judgment /Perception[20]. Golbeck was the first few people using maching learning technology to predict personality based on Twitter comments. Komisin and Guinn then used naive bayes and SVM to predict MBTI tpye based on graduate student's writing materials and found svm had better performance compare to naive bayes. Few years later, gray prediction models, multiple regression models, and multi-task models were applied on this field and gray prediction models performed the best among these three. Later, Tandra used five personality models and deep learning to predict MBTI personality type and found a significant improvement in performance compared to traditional algorithm using advanced algorithm. Recent years,Hernandez and Knight tried various kinds of RNN to train the model, and the result showed that LSTM gave the best prediction rate.
  
 \subsubsection{Original Experiment Data}
+\begin{table}[h]
+	\vspace{20pt}
+	\centering
+	\begin{tabular}{lllll}
+		\hline  
+		  & Dimension 0 & Dimension 1 & Dimension 2 & Dimension 3\\
+		  \hline  
+		  SVM & 77\% & 86.7\% & 73\% & 68.7 \\ 
+		Logistic regression & 67\% & 70\% & 73\% & 66\% \\
+		Naive Bayes	& 38\%	& 75\% & 59\% &47\% \\
+		Sequential Network & 77\% &	89\% & 55\% & 60\% \\
+		LSTM Network & 82.30\% & 91.70\% & 74.70\% & 73.20\% \\
+		XG Boost & 80.50\% & 93.60\% & 72.50\%	& 76.40\% \\
+		\hline       
+	\end{tabular}
+	\caption{Classification Accuracy}
+\label{bs}
+\end{table}
 
 \section{Contribution}
-
+Overall, work was well-distributed between the team members throughout the project. Qiao Wenhui implement the data-preprocess, svm and neural network. Cai Xinyi finished the function of logistic regression and XGboost. Yang Beiyuan focoused on naive bayes and prepare the presentation. All three mumbers finished this report together.
 
 \end{document}
