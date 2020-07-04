@@ -27,8 +27,7 @@
 \usepackage{indentfirst}
 \usepackage{amsmath}
 
-\title{MBTI Personality Type Based on Social Media Record}
-
+\title{MBTI Personality Type Prediction}
 % The \author macro works with any number of authors. There are two commands
 % used to separate the names and addresses of multiple authors: \And and \AND.
 %
@@ -66,6 +65,7 @@ The rest of paper is organized in the following way: the third section introduce
 
 \section{Related Works}
 
+Please refer to supplementary materials
 
 \section{Feature Extraction}
 \subsection{Dataset}
@@ -93,7 +93,7 @@ We decide to apply a naive but efficient method to compute the feature for each 
 
 %Applying logistic regression, we get the model $Z = \theta_0 x_0 + \theta_1 x_1 +\theta_2 x_2 + ... +\theta_n x_n$. Then we use sigmoid function to transform $Z$ to $g\left( Z\right)  = \frac{1}{1+ e^{-z}}$, where $g(Z)  \in \left[0,1\right]$. Take $g(Z)$ into  the posterior probabilities, and use sum of squares as the loss function, we get $J\left( \Theta\right) = \frac{1}{n} Loss\left( h_\Theta\left( X\right), y \right) $. Repeat the update of $\theta_j^{new} = \theta_j^{old} - \alpha \frac{\partial}{\partial \theta_j}J\left( \theta\right) $ until covergence, then we got the paraments needed by the model.
 
-Logistic regression is a statistical model that uses a logistic function to model a binary dependent variable. We firstly find the posterior probabilities of the $K$ classes via linear function in $x$, which yields $Pr\left(G = k\mid X = x\right) = \frac{exp\left(\beta_{k0}+x^{T} \beta_{k}\right)}{1+\Sigma_{l=1}^{K-1}exp\left(\beta_{l0}+x^{T} \beta_{l}\right)}$, $k = 1,...,K-1$, then we get the log-likelihood function $l(\theta) = logPr\left(g\mid X; \theta\right) $, and use maximum likelihood estimation $\left(MLE\right)$ to estimate parameter set $\theta = \{\beta_{10},\beta_1,...,\beta_{\left(K-1\right)0},\beta_{K-1} \}$. Apply Newton-Raphson algorithm to update each $\beta$ by $\beta_{new} \leftarrow \beta_{old} - \frac{f^{'}\left(\beta_{old}\right)}{f^{''}\left(\beta_{old}\right)}$ until covergence.
+In logistic regression, we firstly find the posterior probabilities of the $K$ classes via linear function in $x$, which yields $Pr\left(G = k\mid X = x\right) = \frac{exp\left(\beta_{k0}+x^{T} \beta_{k}\right)}{1+\Sigma_{l=1}^{K-1}exp\left(\beta_{l0}+x^{T} \beta_{l}\right)}$, $k = 1,...,K-1$, then we get the log-likelihood function $l(\theta) = logPr\left(g\mid X; \theta\right) $, and use maximum likelihood estimation $\left(MLE\right)$ to estimate parameter set $\theta = \{\beta_{10},\beta_1,...,\beta_{\left(K-1\right)0},\beta_{K-1} \}$. Apply Newton-Raphson algorithm to update each $\beta$ by $\beta_{new} \leftarrow \beta_{old} - \frac{f^{'}\left(\beta_{old}\right)}{f^{''}\left(\beta_{old}\right)}$ until covergence.
 
 \subsection{Naive Bayes}
 Naive Bayes is a conditional probability model,where  assumes that all the features that go into the model is independent of each other.
@@ -132,6 +132,9 @@ Suppose we have a dataset $\mathcal{D}$, $\mathcal{D}=\left\{\left(\mathbf{x}_{i
 
 
 \section{Contribution}
+
+\section{Reference}
+
 
 \small
 
