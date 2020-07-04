@@ -27,8 +27,7 @@
 \usepackage{indentfirst}
 \usepackage{amsmath}
 
-\title{MBTI Personality Type Based on Social Media Record}
-
+\title{Social Media based MBTI Personality Prediction}
 % The \author macro works with any number of authors. There are two commands
 % used to separate the names and addresses of multiple authors: \And and \AND.
 %
@@ -60,12 +59,12 @@ It is widely accepted that people of different personality tend to post differen
 \end{abstract}
 
 \section{Introduction}
-The Myers–Briggs Type Indicator (MBTI) is a pseudoscientific introspective self-report questionnaire indicating differing psychological preferences in how people perceive the world and make decisions. The MBTI is based on the conceptual theory proposed by Swiss psychiatrist Carl Jung, who had speculated that people experience the world using four principal psychological functions – sensation, intuition, feeling, and thinking – and that one of these four functions is dominant for a person most of the time. The four categories are Introversion/Extraversion, Sensing/Intuition, Thinking/Feeling, Judging/Perception. Each person is said to have one preferred quality from each category, producing 16 unique types. \\
-Social media is a platform where people share their emotion or feeling, as well as recording their daily life. It could be easily proposed an assumption that what people post on social media has a correlation with their personality, i.e. people of different personality tend to have different styles in posting on social media. This paper is an attempt to invest the correlation, and try to predict the personality type from the social media record. \\
-The rest of paper is organized in the following way: the third section introduced the dataset we used and how to extract feature from text data. The fourth section lists the methods we use for classification. Then we show the result of experiment and visualize some of the result. Finally, we discuss the pros and cons and draw the conclusion of our research.
+The Myers–Briggs Type Indicator (MBTI) is a pseudoscientific introspective self-report questionnaire indicating differing psychological preferences in how people perceive the world and make decisions. The MBTI is based on the conceptual theory, measure the personality in four dimension. The four categories are Introversion/Extraversion, Sensing/Intuition, Thinking/Feeling, Judging/Perception. Each person is said to have one preferred quality from each category, producing 16 unique types. \\
+Social media is a platform where people share their emotion or feeling, as well as recording their daily life. It could be easily proposed an assumption that what people post on social media has a correlation with their personality, i.e. people of different personality tend to have different styles in posting on social media. This paper is an attempt to invest the correlation, and try to predict the personality type from the social media record. The related works is summarized in the appendix.
 
-\section{Related Works}
+%\section{Related Works}
 
+%Please refer to supplementary materials
 
 \section{Feature Extraction}
 \subsection{Dataset}
@@ -91,9 +90,9 @@ We decide to apply a naive but efficient method to compute the feature for each 
 \section{Model for Prediction}
 \subsection{Logistic Regression}
 
-Applying logistic regression, we get the model $Z = \theta_0 x_0 + \theta_1 x_1 +\theta_2 x_2 + ... +\theta_n x_n$. Then we use sigmoid function to transform $Z$ to $g\left( Z\right)  = \frac{1}{1+ e^{-z}}$, where $g(Z)  \in \left[0,1\right]$. Take $g(Z)$ into  the posterior probabilities, and use sum of squares as the loss function, we get $J\left( \Theta\right) = \frac{1}{n} Loss\left( h_\Theta\left( X\right), y \right) $. Repeat the update of $\theta_j^{new} = \theta_j^{old} - \alpha \frac{\partial}{\partial \theta_j}J\left( \theta\right) $ until covergence, then we got the paraments needed by the model.
+%Applying logistic regression, we get the model $Z = \theta_0 x_0 + \theta_1 x_1 +\theta_2 x_2 + ... +\theta_n x_n$. Then we use sigmoid function to transform $Z$ to $g\left( Z\right)  = \frac{1}{1+ e^{-z}}$, where $g(Z)  \in \left[0,1\right]$. Take $g(Z)$ into  the posterior probabilities, and use sum of squares as the loss function, we get $J\left( \Theta\right) = \frac{1}{n} Loss\left( h_\Theta\left( X\right), y \right) $. Repeat the update of $\theta_j^{new} = \theta_j^{old} - \alpha \frac{\partial}{\partial \theta_j}J\left( \theta\right) $ until covergence, then we got the paraments needed by the model.
 
-In logistic regression, we firstly find the posterior probabilities of the $K$ classes via linear function in $x$, which yields $Pr\left(G = k\mid X = x\right) = \frac{exp\left(\beta_{k0}+x^{T} \beta_{k}\right)}{1+\Sigma_{l=1}^{K-1}exp\left(\beta_{l0}+x^{T} \beta_{l}\right)}$, $k = 1,...,K-1$, then we get the log-likelihood function $l(\theta) = logPr\left(g\mid X; \theta\right) $, and use maximum likelihood estimation $\left(MLE\right)$ to estimate parameter set $\theta = \{\beta_{10},\beta_1,...,\beta_{\left(K-1\right)0},\beta_{K-1} \}$. Then we use Newton-Raphson algorithm to update each $\beta$ by $\beta_{new} = \beta_{old} - \frac{f^{'}\left(x_{old}\right)}{f^{''}\left(x_{old}\right)}$ until covergence.
+In logistic regression, we firstly find the posterior probabilities of the $K$ classes via linear function in $x$, which yields $Pr\left(G = k\mid X = x\right) = \frac{exp\left(\beta_{k0}+x^{T} \beta_{k}\right)}{1+\Sigma_{l=1}^{K-1}exp\left(\beta_{l0}+x^{T} \beta_{l}\right)}$, $k = 1,...,K-1$, then we get the log-likelihood function $l(\theta) = logPr\left(g\mid X; \theta\right) $, and use maximum likelihood estimation $\left(MLE\right)$ to estimate parameter set $\theta = \{\beta_{10},\beta_1,...,\beta_{\left(K-1\right)0},\beta_{K-1} \}$. Apply Newton-Raphson algorithm to update each $\beta$ by $\beta_{new} \leftarrow \beta_{old} - \frac{f^{'}\left(\beta_{old}\right)}{f^{''}\left(\beta_{old}\right)}$ until covergence.
 
 \subsection{Naive Bayes}
 Naive Bayes is a conditional probability model,where  assumes that all the features that go into the model is independent of each other.
@@ -105,21 +104,16 @@ In this question, to determine which MBTI type the person belongs to, we give a 
 \subsection{Support Vector Regreesion}
 
 SVM is a supervised machine learning algorithm that aims to find the maximum margins between different classes by determining the weights and bias of the separating hyperplane. Given dataset \\S = ${(x_i,y_i)}_{i=1}^m $ We define our algorithm as follow:
-
-$$ min_{w,\xi_1,...\xi_m}||w||^2 + C\sum_{i=1}^m \xi_i $$
-$$ \emph{s.t} \ for \ all \ i, \ y_i w x_i \ge 1 - \xi_i $$
-$$ \xi_i \ge 0 $$  
-
-
+$$ min_{w,\xi_1,...\xi_m}||w||^2 + C\sum_{i=1}^m \xi_i \quad \emph{s.t} \ for \ all \ i, \ y_i w x_i \ge 1 - \xi_i, \xi_i \ge 0 $$
 We can implement this algorithm with kernel which identifies boundaries in a high-dimensional feature space,thus  we can split the training set into labeled 16 categories.
 \subsection{Neural Network}
 \subsubsection{Simple Sequential Network}
 The first attempt we tried is to classify the data with sequential neural network. It has two hidden layer, which consist of 32 unit, and take RELU as activation function. In the output layer, we use sigmoid function to output the classification result between $(0,1)$.
 \subsubsection{LSTM Recurrent Network}
-To improve the performance, we import the long-short term memory recurrent network, which was originally proposed by Sepp Hochreiter and Jürgen Schmidhuber in 1997. It gains an ability to bring information between time slots. Suppose it has a conveyor parallel to the sequence we process. The information from the test could get onto the conveyor at any position, and was sent to later time points. This is how it works: Save the information for later using, to prevent the earlier signal from disappearing while processing.\\
+During the experiment, we find that the simple sequential network suffered from gradient vinish problem, which limit its performence. To overcome it, we import the long-short term memory recurrent network, which was originally proposed by Sepp Hochreiter and Jürgen Schmidhuber in 1997. It gains an ability to bring information between time slots. Suppose it has a conveyor parallel to the sequence we process. The information from the test could get onto the conveyor at any position, and was sent to later time points. This is how it works: Save the information for later using, to prevent the earlier signal from disappearing while processing.\\
 The structure of LSTM net we used was shown in the graph. It is considered to be a effective way to deal with the problem of gradient vanishing.
 \subsection{XGBoost}
-Suppose we have a dataset $\mathcal{D}$, $\mathcal{D}=\left\{\left(\mathbf{x}_{i}, y_{i}\right)\right\}\left(|\mathcal{D}|=n, \mathbf{x}_{i} \in \mathbb{R}^{m}, y_{i} \in \mathbb{R}\right)$. XGBoost  integrates the result of CART trees, $\hat{y}_{i}=\phi\left(\mathbf{x}_{i}\right)=\sum_{k=1}^{K} f_{k}\left(\mathbf{x}_{i}\right)$, $f_{k} \in \mathcal{F}$ where  $\mathcal{F}=\left\{f(\mathbf{x})=w_{q(\mathbf{x})}\right\}\left(q: \mathbb{R}^{m} \rightarrow T, w \in \mathbb{R}^{T}\right)$ repersents the construction of each CART tree. Let $T$ be the number of leaf nodes, $W$ is the score of leaf nodes. $\gamma$ is a parament to controll the number of leaf nodes in order to  avoid over fitting. XGBoost has the loss function $\Sigma_{i = 1}^n l(y_i,\hat{y_i})+\Sigma_{k = 1}^K\Omega(f_k) \quad where \quad  \Omega(f) = \gamma T + \frac{1}{2}\lambda\mid\mid w\mid\mid^2$. The first part repersents the training loss and the second part repersents the complexity of the trees. Then we update the model by additive manner, $\hat{y}_{i}^{(t)}=\sum_{k=1}^{t} f_{k}\left(x_{i}\right)=\hat{y}_{i}^{(t-1)}+f_{t}\left(x_{i}\right)$, with the loss function in $t$ turn is $\mathcal{L}^{(t)}=\sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t-1)}+f_{t}\left(\mathbf{x}_{i}\right)\right)+\Omega\left(f_{t}\right)$. Use taylor expansion to expand $\mathcal{L}^{(t)}$, only take the first three terms and take the optimized value of leaf node into it, we get $\tilde{\mathcal{L}}^{(t)}(q)=-\frac{1}{2} \sum_{j=1}^{T} \frac{\left(\sum_{i \in I_{j}} g_{i}\right)^{2}}{\sum_{i \in I_{j}} h_{i}+\lambda}+\gamma T$. We use it to evaluate the quality of a tree, a smaller score means a higher quality. We choose to use a greedy algorithm, start with a single leaf node, iteratively split to add nodes to the tree.
+Suppose we have a dataset $\mathcal{D}$, $\mathcal{D}=\left\{\left(\mathbf{x}_{i}, y_{i}\right)\right\}\left(|\mathcal{D}|=n, \mathbf{x}_{i} \in \mathbb{R}^{m}, y_{i} \in \mathbb{R}\right)$. XGBoost  integrates the result of CART trees, $\hat{y}_{i}=\phi\left(\mathbf{x}_{i}\right)=\sum_{k=1}^{K} f_{k}\left(\mathbf{x}_{i}\right)$, $f_{k} \in \mathcal{F}$ where  $\mathcal{F}=\left\{f(\mathbf{x})=w_{q(\mathbf{x})}\right\}\left(q: \mathbb{R}^{m} \rightarrow T, w \in \mathbb{R}^{T}\right)$ repersents the construction of each CART tree. Let $T$ be the number of leaf nodes, $W$ is the score of leaf nodes. $\gamma$ is a parament to controll the number of leaf nodes in order to  avoid over fitting. XGBoost has the loss function $\Sigma_{i = 1}^n l(y_i,\hat{y_i})+\Sigma_{k = 1}^K\Omega(f_k) \quad where \quad  \Omega(f) = \gamma T + \frac{1}{2}\lambda \left|\left|w\right|\right| ^2$. The first part repersents the training loss and the second part repersents the complexity of the trees. Then we update the model by additive manner, $\hat{y}_{i}^{(t)}=\sum_{k=1}^{t} f_{k}\left(x_{i}\right)=\hat{y}_{i}^{(t-1)}+f_{t}\left(x_{i}\right)$, with the loss function in $t$ turn is $\mathcal{L}^{(t)}=\sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t-1)}+f_{t}\left(\mathbf{x}_{i}\right)\right)+\Omega\left(f_{t}\right)$. Use taylor expansion to expand $\mathcal{L}^{(t)}$, only take the first three terms and take the optimized value of leaf node into it, we get $\tilde{\mathcal{L}}^{(t)}(q)=-\frac{1}{2} \sum_{j=1}^{T} \frac{\left(\sum_{i \in I_{j}} g_{i}\right)^{2}}{\sum_{i \in I_{j}} h_{i}+\lambda}+\gamma T$. We use it to evaluate the quality of a tree, a smaller score means a higher quality. We choose to use a greedy algorithm, start with a single leaf node, iteratively split to add nodes to the tree, which can be concluded that $\mathcal{L}_{split} = \frac{1}{2} \left[ \frac{\left( \Sigma_{i \in I_{L}} g_i\right) ^2}{\Sigma_{i \in I_{L}} h_i+\lambda} + \frac{\left( \Sigma_{i \in I_{R}} g_i\right) ^2}{\Sigma_{i \in I_{R}} h_i+\lambda} - \frac{\left( \Sigma_{i \in I} g_i\right) ^2}{\Sigma_{i \in I} h_i+\lambda} \right] - \gamma  $.
 
 
 
@@ -132,6 +126,9 @@ Suppose we have a dataset $\mathcal{D}$, $\mathcal{D}=\left\{\left(\mathbf{x}_{i
 
 
 \section{Contribution}
+
+\section{Reference}
+
 
 \small
 

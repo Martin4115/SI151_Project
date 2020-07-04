@@ -8,6 +8,8 @@ from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import GridSearchCV, train_test_split
 
+from keras.layers import LSTM
+
 c_index = 3
 run_proportion = 1  # To accelerate the computation
 total_size = 8675
@@ -50,9 +52,9 @@ from keras import layers
 
 model = models.Sequential()
 model.add(layers.Dense(64, activation='relu', input_shape = (200,)))
-# model.add(layers.Dense(LSTM(32)))
-model.add(layers.Dense(64, activation='relu'))
-model.add(layers.Dense(64, activation='relu'))
+model.add(layers.Dense(LSTM(32)))
+# model.add(layers.Dense(64, activation='relu'))
+# model.add(layers.Dense(64, activation='relu'))
 model.add(layers.Dense(1, activation='sigmoid'))
 
 model.compile(optimizer='rmsprop',
