@@ -1,4 +1,5 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+<<<<<<< HEAD
 \BOOKMARK [1][-]{section.2}{Feature Extraction}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Dataset}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Word2vec}{section.2}% 4
@@ -19,3 +20,26 @@
 \BOOKMARK [1][-]{section.6}{Conclusion}{}% 19
 \BOOKMARK [1][-]{section.7}{Contribution}{}% 20
 \BOOKMARK [1][-]{section.8}{Reference}{}% 21
+=======
+\BOOKMARK [1][-]{section.2}{Related Works}{}% 2
+\BOOKMARK [1][-]{section.3}{Feature Extraction}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Dataset}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Word2vec}{section.3}% 5
+\BOOKMARK [3][-]{subsubsection.3.2.1}{One-hot Coding}{subsection.3.2}% 6
+\BOOKMARK [3][-]{subsubsection.3.2.2}{CBOW Model}{subsection.3.2}% 7
+\BOOKMARK [3][-]{subsubsection.3.2.3}{N-gram Model}{subsection.3.2}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Paragraph Vectorization}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Model for Prediction}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{Logistic Regression}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{Naive Bayes}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.3}{Support Vector Regreesion}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.4}{Neural Network}{section.4}% 14
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Simple Sequential Network}{subsection.4.4}% 15
+\BOOKMARK [3][-]{subsubsection.4.4.2}{LSTM Recurrent Network}{subsection.4.4}% 16
+\BOOKMARK [2][-]{subsection.4.5}{XGBoost}{section.4}% 17
+\BOOKMARK [1][-]{section.5}{Experiments and Results}{}% 18
+\BOOKMARK [1][-]{section.6}{Discussion}{}% 19
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 20
+\BOOKMARK [1][-]{section.8}{Contribution}{}% 21
+\BOOKMARK [1][-]{section.9}{Reference}{}% 22
+>>>>>>> 11106749daab54205826be4ec7de9838d5bc43ef

@@ -27,7 +27,11 @@
 \usepackage{indentfirst}
 \usepackage{amsmath}
 
+<<<<<<< HEAD
 \title{Social Media based MBTI Personality Prediction}
+=======
+\title{MBTI Personality Type Prediction}
+>>>>>>> 11106749daab54205826be4ec7de9838d5bc43ef
 % The \author macro works with any number of authors. There are two commands
 % used to separate the names and addresses of multiple authors: \And and \AND.
 %
@@ -64,7 +68,11 @@ Social media is a platform where people share their emotion or feeling, as well 
 
 %\section{Related Works}
 
+<<<<<<< HEAD
 %Please refer to supplementary materials
+=======
+Please refer to supplementary materials
+>>>>>>> 11106749daab54205826be4ec7de9838d5bc43ef
 
 \section{Feature Extraction}
 \subsection{Dataset}
@@ -89,10 +97,17 @@ We decide to apply a naive but efficient method to compute the feature for each 
 
 \section{Model for Prediction}
 \subsection{Logistic Regression}
+%Applying logistic regression, we get the model $Z = \theta_0 x_0 + \theta_1 x_1 +\theta_2 x_2 + ... +\theta_n x_n$. Then we use sigmoid function to transform $Z$ to $g\left( Z\right)  = \frac{1}{1+ e^{-z}}$, where $g(Z)  \in \left[0,1\right]$. Take $g(Z)$ into  the posterior probabilities, and use sum of squares as the loss function, we get $J\left( \Theta\right) = \frac{1}{n} Loss\left( h_\Theta\left( X\right), y \right) $. Repeat the update of $\theta_j^{new} = \theta_j^{old} - \alpha \frac{\partial}{\partial \theta_j}J\left( \theta\right) $ until covergence, then we got the paraments needed by the model.
 
+<<<<<<< HEAD
 %Applying logistic regression, we get the model $Z = \theta_0 x_0 + \theta_1 x_1 +\theta_2 x_2 + ... +\theta_n x_n$. Then we use sigmoid function to transform $Z$ to $g\left( Z\right)  = \frac{1}{1+ e^{-z}}$, where $g(Z)  \in \left[0,1\right]$. Take $g(Z)$ into  the posterior probabilities, and use sum of squares as the loss function, we get $J\left( \Theta\right) = \frac{1}{n} Loss\left( h_\Theta\left( X\right), y \right) $. Repeat the update of $\theta_j^{new} = \theta_j^{old} - \alpha \frac{\partial}{\partial \theta_j}J\left( \theta\right) $ until covergence, then we got the paraments needed by the model.
 
 In logistic regression, we firstly find the posterior probabilities of the $K$ classes via linear function in $x$, which yields $Pr\left(G = k\mid X = x\right) = \frac{exp\left(\beta_{k0}+x^{T} \beta_{k}\right)}{1+\Sigma_{l=1}^{K-1}exp\left(\beta_{l0}+x^{T} \beta_{l}\right)}$, $k = 1,...,K-1$, then we get the log-likelihood function $l(\theta) = logPr\left(g\mid X; \theta\right) $, and use maximum likelihood estimation $\left(MLE\right)$ to estimate parameter set $\theta = \{\beta_{10},\beta_1,...,\beta_{\left(K-1\right)0},\beta_{K-1} \}$. Apply Newton-Raphson algorithm to update each $\beta$ by $\beta_{new} \leftarrow \beta_{old} - \frac{f^{'}\left(\beta_{old}\right)}{f^{''}\left(\beta_{old}\right)}$ until covergence.
+=======
+Logistic regression is a statistical model that uses a logistic function to model a binary dependent variable. We firstly find the posterior probabilities of the $K$ classes via linear function in $x$, which yields $$Pr\left(G = k\mid X = x\right) = \frac{exp\left(\beta_{k0}+x^{T} \beta_{k}\right)}{1+\Sigma_{l=1}^{K-1}exp\left(\beta_{l0}+x^{T} \beta_{l}\right)},\quad k = 1,...,K-1$$ 
+
+Then we get the log-likelihood function $l(\theta) = logPr\left(g\mid X; \theta\right) $, and use maximum likelihood estimation $\left(MLE\right)$ to estimate parameter set $\theta = \{\beta_{10},\beta_1,...,\beta_{\left(K-1\right)0},\beta_{K-1} \}$. Apply Newton-Raphson algorithm to update each $\beta$ until covergence according to $$\beta_{new} \leftarrow \beta_{old} - \frac{f^{'}\left(\beta_{old}\right)}{f^{''}\left(\beta_{old}\right)}$$
+>>>>>>> 11106749daab54205826be4ec7de9838d5bc43ef
 
 \subsection{Naive Bayes}
 Naive Bayes is a conditional probability model,where  assumes that all the features that go into the model is independent of each other.
@@ -112,10 +127,26 @@ The first attempt we tried is to classify the data with sequential neural networ
 \subsubsection{LSTM Recurrent Network}
 During the experiment, we find that the simple sequential network suffered from gradient vinish problem, which limit its performence. To overcome it, we import the long-short term memory recurrent network, which was originally proposed by Sepp Hochreiter and Jürgen Schmidhuber in 1997. It gains an ability to bring information between time slots. Suppose it has a conveyor parallel to the sequence we process. The information from the test could get onto the conveyor at any position, and was sent to later time points. This is how it works: Save the information for later using, to prevent the earlier signal from disappearing while processing.\\
 The structure of LSTM net we used was shown in the graph. It is considered to be a effective way to deal with the problem of gradient vanishing.
+
 \subsection{XGBoost}
+<<<<<<< HEAD
 Suppose we have a dataset $\mathcal{D}$, $\mathcal{D}=\left\{\left(\mathbf{x}_{i}, y_{i}\right)\right\}\left(|\mathcal{D}|=n, \mathbf{x}_{i} \in \mathbb{R}^{m}, y_{i} \in \mathbb{R}\right)$. XGBoost  integrates the result of CART trees, $\hat{y}_{i}=\phi\left(\mathbf{x}_{i}\right)=\sum_{k=1}^{K} f_{k}\left(\mathbf{x}_{i}\right)$, $f_{k} \in \mathcal{F}$ where  $\mathcal{F}=\left\{f(\mathbf{x})=w_{q(\mathbf{x})}\right\}\left(q: \mathbb{R}^{m} \rightarrow T, w \in \mathbb{R}^{T}\right)$ repersents the construction of each CART tree. Let $T$ be the number of leaf nodes, $W$ is the score of leaf nodes. $\gamma$ is a parament to controll the number of leaf nodes in order to  avoid over fitting. XGBoost has the loss function $\Sigma_{i = 1}^n l(y_i,\hat{y_i})+\Sigma_{k = 1}^K\Omega(f_k) \quad where \quad  \Omega(f) = \gamma T + \frac{1}{2}\lambda \left|\left|w\right|\right| ^2$. The first part repersents the training loss and the second part repersents the complexity of the trees. Then we update the model by additive manner, $\hat{y}_{i}^{(t)}=\sum_{k=1}^{t} f_{k}\left(x_{i}\right)=\hat{y}_{i}^{(t-1)}+f_{t}\left(x_{i}\right)$, with the loss function in $t$ turn is $\mathcal{L}^{(t)}=\sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t-1)}+f_{t}\left(\mathbf{x}_{i}\right)\right)+\Omega\left(f_{t}\right)$. Use taylor expansion to expand $\mathcal{L}^{(t)}$, only take the first three terms and take the optimized value of leaf node into it, we get $\tilde{\mathcal{L}}^{(t)}(q)=-\frac{1}{2} \sum_{j=1}^{T} \frac{\left(\sum_{i \in I_{j}} g_{i}\right)^{2}}{\sum_{i \in I_{j}} h_{i}+\lambda}+\gamma T$. We use it to evaluate the quality of a tree, a smaller score means a higher quality. We choose to use a greedy algorithm, start with a single leaf node, iteratively split to add nodes to the tree, which can be concluded that $\mathcal{L}_{split} = \frac{1}{2} \left[ \frac{\left( \Sigma_{i \in I_{L}} g_i\right) ^2}{\Sigma_{i \in I_{L}} h_i+\lambda} + \frac{\left( \Sigma_{i \in I_{R}} g_i\right) ^2}{\Sigma_{i \in I_{R}} h_i+\lambda} - \frac{\left( \Sigma_{i \in I} g_i\right) ^2}{\Sigma_{i \in I} h_i+\lambda} \right] - \gamma  $.
+=======
+>>>>>>> 11106749daab54205826be4ec7de9838d5bc43ef
 
+Xgboost is an improvement of gradient lifting algorithm. Newton method is used to solve the extreme value of loss function. It applies Taylor expansion to the loss function, only keep the first two orders, and the regularization term is added to the loss function.
 
+%Suppose we have a dataset $\mathcal{D}$, $\mathcal{D}=\left\{\left(\mathbf{x}_{i}, y_{i}\right)\right\}\left(|\mathcal{D}|=n, \mathbf{x}_{i} \in \mathbb{R}^{m}, y_{i} \in \mathbb{R}\right)$. 
+
+The main idea is to  integrate the result of CART trees, $\hat{y}_{i}=\phi\left(\mathbf{x}_{i}\right)=\sum_{k=1}^{K} f_{k}\left(\mathbf{x}_{i}\right)$, $f_{k} \in \mathcal{F}$ where  $\mathcal{F}=\left\{f(\mathbf{x})=w_{q(\mathbf{x})}\right\}\left(q: \mathbb{R}^{m} \rightarrow T, w \in \mathbb{R}^{T}\right)$ repersents the construction of each CART tree. 
+
+%The loss function can be expressed as $\Sigma_{i = 1}^n l(y_i,\hat{y_i})+\Sigma_{k = 1}^K\Omega(f_k) \quad where \quad  \Omega(f) = \gamma T + \frac{1}{2}\lambda \left|\left|w\right|\right| ^2$. The first part repersents the training loss and the second part repersents the complexity of the trees.
+
+We update the model by additive manner, with the loss function in $t$ turn as following: $$\hat{y}_{i}^{(t)}=\sum_{k=1}^{t} f_{k}\left(x_{i}\right)=\hat{y}_{i}^{(t-1)}+f_{t}\left(x_{i}\right)$$ $$\mathcal{L}^{(t)}=\sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t-1)}+f_{t}\left(\mathbf{x}_{i}\right)\right)+\Omega\left(f_{t}\right), \quad where \quad  \Omega(f) = \gamma T + \frac{1}{2}\lambda \left|\left|w\right|\right| ^2$$ Here $T$ is the number of leaf nodes, $W$ is the score of leaf nodes, and $\gamma$ is a parament to controll the number of leaf nodes in order to  avoid over fitting.  
+
+%It takes both  training loss and tthe complexity of trees into account.
+
+Use taylor expansion to expand $\mathcal{L}^{(t)}$, only take the first three terms and take the optimized value of leaf node into it, we get $\tilde{\mathcal{L}}^{(t)}(q)=-\frac{1}{2} \sum_{j=1}^{T} \frac{\left(\sum_{i \in I_{j}} g_{i}\right)^{2}}{\sum_{i \in I_{j}} h_{i}+\lambda}+\gamma T$. We use it to evaluate the quality of a tree, a smaller score means a higher quality. We choose to use a greedy algorithm, start with a single leaf node, iteratively split to add nodes to the tree, which can be concluded that $$\mathcal{L}_{split} = \frac{1}{2} \left[ \frac{\left( \Sigma_{i \in I_{L}} g_i\right) ^2}{\Sigma_{i \in I_{L}} h_i+\lambda} + \frac{\left( \Sigma_{i \in I_{R}} g_i\right) ^2}{\Sigma_{i \in I_{R}} h_i+\lambda} - \frac{\left( \Sigma_{i \in I} g_i\right) ^2}{\Sigma_{i \in I} h_i+\lambda} \right] - \gamma  $$
 
 \section{Experiments and Results}
 
