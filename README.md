@@ -47,5 +47,5 @@
 [Sklearn-LogisticRegression](https://blog.csdn.net/CherDW/article/details/54891073)</br>
 [LogisticRegressionCV Arguments Introduction](https://blog.csdn.net/weixin_41690708/article/details/95171333)</br>
 ### XGboost
-[Example of XGboost](https://blog.csdn.net/u011630575/article/details/79418138?ops_request_misc=&request_id=&biz_id=102&utm_term=XGBoost&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-79418138) <\br>
+[Example of XGboost](https://blog.csdn.net/u011630575/article/details/79418138?ops_request_misc=&request_id=&biz_id=102&utm_term=XGBoost&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-79418138) </br>
 [Theroy of XGboost](https://blog.csdn.net/sb19931201/article/details/52557382?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522159306924419195162532096%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=159306924419195162532096&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_click~default-2-52557382.first_rank_ecpm_v3_pc_rank_v2&utm_term=XGBoost)
