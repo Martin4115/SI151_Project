@@ -1,15 +1,29 @@
-# SI151_Project
+# SI151 Project: Social Media Based MBTI Personality Prediction
 
+## Introduction
 
-### Update label encoding:
+This is the course project of SI151: Optimization and Machine Learning at [Shanghaitech University](https://www.shanghaitech.edu.cn) lectured by professor [Lu Sun](https://sist.shanghaitech.edu.cn/2020/0707/c7499a53879/page.htm). The authors' information is mentioned in the report(report/report.pdf). </br>
+Report and its source code are included in folder "report", and you are welcomed to view our methods and results. However, we strongly recommend you not to copy our work for your own project. </br>
+The reference listed at the end of this doc are rather helpful, as you may have understanding about the background knowledge. </br>
+
+### Dependencies
+The project is implement with Python, with many third-party librarys installed. I was too lazy to list them so you may find out by yourself.
+
+### Ways to run the program
+Find out by yourself.
+
+### Method of label encoding:
 + Four bits binary string.
 + First bit: 0-E 1-I
 + Second bit: 0-S 1-N
 + Third bit: 0-T 1-F
 + Fourth bit: 0-J 1-P
 
+### Note:
+If you find any mistakes in our work, don't be surprised. We know it is far away from perfect, and there is a lot to do to improve it. Life has been so hard that we just wanted to finish the course project.
 
-## Roadmap
+
+## Roadmap: What we have done
 :heavy_check_mark: Feature extraction </br>
 :heavy_check_mark: SVM </br>
 :heavy_check_mark: Logistic regression  </br>
@@ -19,7 +33,8 @@
 :heavy_check_mark: Write the report. </br>
 :heavy_check_mark: Record the vadio. </br>
 
-## Accuracy summary
+## Result: Accuracy summary
+It has been visualized in the report, as well as the picture in /report/fig/result.jpg.
 
 | Method | Dimension 0 | Dimension 1 | Dimension 2 | Dimension 3 | Multi-class |
 | ------ | ------ | ------ | ------ | ------ | ------ |
